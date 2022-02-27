@@ -1,3 +1,7 @@
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function buildTable(tickers, ncavs) {
     let table = document.createElement("table");
 
@@ -24,7 +28,7 @@ function buildTable(tickers, ncavs) {
         }
         marketCap = (marketCap / 1000000).toFixed(0);
         const nacvRatio = (marketCap / ncav).toFixed(2);
-        for (const text of [ticker, name, currentAssets, liabilities, ncav, marketCap, nacvRatio])
+        for (const text of [ticker, name, numberWithCommas(currentAssets), numberWithCommas(liabilities), numberWithCommas(ncav), numberWithCommas(marketCap), nacvRatio])
         {
             let td = document.createElement("td");
             td.appendChild(document.createTextNode(text));
